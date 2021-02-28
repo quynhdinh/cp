@@ -1,2 +1,2 @@
-# cp
-Resources for competitive programming
+# cp resources
+algorithms and data structures using in CP
