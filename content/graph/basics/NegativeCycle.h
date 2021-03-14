@@ -5,16 +5,17 @@
  */
 template<class T> bool ckmin(T& a, const T& b) {
 	return b < a ? a = b, 1 : 0; } // set a = min(a,b)
-vector<int> negCyc(int n, vector<pair<pi,int>> ed) {
-	vector<long long> d(n); vi p(n); int x = -1;
-	F0R(i,n) {
-		x = -1; each(t,ed) if (ckmin(d[t.f.s],d[t.f.f]+t.s))
-			p[t.f.s] = t.f.f, x = t.f.s;
+
+vector<int> negCyc(int n, vector<pair<pair<int, int>,int>> ed) { // edge and weigh
+	vector<long long> d(n); vector<int> p(n); int x = -1;
+	for(int i = 0; i < n; i++){
+		x = -1; for(auto& t: ed) if (ckmin(d[t.first.second],d[t.first.first]+t.second))
+			p[t.first.second] = t.first.first, x = t.first.second;
 		if (x == -1) return {};
 	}
-	F0R(i,n) x = p[x]; // enter cycle
-	vi cyc = {x}; while (p[cyc.back()] != x) cyc.pb(p[cyc.back()]);
-	reverse(all(cyc)); return cyc;
+	for(int i = 0; i < n; i++) x = p[x]; // enter cycle
+	vector<int> cyc = {x}; while (p[cyc.back()] != x) cyc.push_back(p[cyc.back()]);
+	reverse(cyc.begin(), cyc.end()); return cyc;
 }
 /**
 Explanation:
