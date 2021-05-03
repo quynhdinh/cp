@@ -1,7 +1,6 @@
 /**
- * Description: Calculates longest path in tree. The vertex furthest
- 	* from 0 must be an endpoint of the diameter.
- * Source: own
+ * Description: Calculates longest path in tree.
+ * Source: Benq
  * Verification:
    * http://www.spoj.com/problems/PT07Z/
    * https://codeforces.com/contest/1182/problem/D

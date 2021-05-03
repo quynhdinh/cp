@@ -4,7 +4,7 @@
  	* Supports updates in the form ``add 1 to all verts $v$ such that $dist(x,v)\le y$."
  * Time: O(N\log N) build, O(\log N) update and query
  * Memory: O(N\log N)
- * Source: own
+ * Source: Benq
  * Verification:
 	* solves https://dmoj.ca/problem/dmopc19c7p6
 	* https://codeforces.com/contest/342/problem/E
