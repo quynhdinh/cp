@@ -50,7 +50,7 @@ int32_t main(){ fast;
 	}
 }
 
-
+//debug
 void __print(int x) {cerr << x;}
 void __print(long x) {cerr << x;}
 void __print(long long x) {cerr << x;}
@@ -77,3 +77,5 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #else
 #define debug(x...)
 #endif
+
+//end debug template

@@ -1,2 +1,2 @@
 # cp resources
-algorithms and data structures using in CP
+selected algorithms and data structures using in CP
