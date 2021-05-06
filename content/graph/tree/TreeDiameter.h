@@ -1,11 +1,14 @@
-/**
+/*
  * Description: Calculates longest path in tree.
  * Source: Benq
  * Verification:
    * http://www.spoj.com/problems/PT07Z/
    * https://codeforces.com/contest/1182/problem/D
  */
-
+/*
+ * input: size and adding edges
+ * output: diameter in length, center(vertice(s))
+ * */
 template<int SZ> struct TreeDiameter {
 	int N, par[SZ], dist[SZ], diaLen;
 	vector<int> adj[SZ], dia, center;

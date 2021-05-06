@@ -40,3 +40,5 @@ answer: min_contiguous_distance(a)
 /*
 // harder: get K * consecutive: https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/
 // solution(sliding window + prefix sum)
+// similar: https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff49/000000000043b027
+// https://codeforces.com/contest/1455/problem/E
