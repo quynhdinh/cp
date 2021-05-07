@@ -2,7 +2,7 @@
  * Description: Calculates longest path in tree.
  * Source: Benq
  * Verification:
-   * http://www.spoj.com/problems/PT07Z/
+   * http://www.spoj.com/problems/PT07Z/ (obvious) 
    * https://codeforces.com/contest/1182/problem/D
  */
 /*

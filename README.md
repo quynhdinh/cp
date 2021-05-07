@@ -1,2 +1,2 @@
 # cp resources
-selected algorithms and data structures using in CP
+select algorithms and data structures, also some common implementation for copy and paste
