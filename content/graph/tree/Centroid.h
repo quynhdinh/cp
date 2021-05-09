@@ -12,8 +12,11 @@
  */
 template<class T> bool ckmin(T& a, const T& b) {
 	return b < a ? a = b, 1 : 0; } // set a = min(a,b)
+
 void ad(vi& a, int b) { ckmin(b,sz(a)-1); if (b>=0) a[b]++; }
+
 void prop(vi& a) { for(int i = sz(a) - 2; i >= 0; i--) a[i] += a[i+1]; }
+
 template<int SZ> struct Centroid {
 	vi adj[SZ]; void ae(int a,int b){adj[a].pb(b),adj[b].pb(a);}
 	bool done[SZ]; // processed as centroid yet

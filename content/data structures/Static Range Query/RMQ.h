@@ -12,14 +12,14 @@
 
 template<class T> struct RMQ { // floor(log_2(x))
 	int level(int x) { return 31-__builtin_clz(x); }
-	vector<T> v; vector<vi> jmp;
+	vector<T> v; vector<vector<int>> jmp;
 	int comb(int a, int b) { // index of min
 		return v[a]==v[b]?min(a,b):(v[a]<v[b]?a:b); }
 	void init(const vector<T>& _v) {
-		v = _v; jmp = {vi(sz(v))}; iota(all(jmp[0]),0);
-		for (int j = 1; 1<<j <= sz(v); ++j) {
-			jmp.pb(vi(sz(v)-(1<<j)+1));
-			F0R(i,sz(jmp[j])) jmp[j][i] = comb(jmp[j-1][i],
+		v = _v; jmp = {vector<int>(v.size())}; iota(all(jmp[0]),0);
+		for (int j = 1; 1<<j <= v.size(); ++j) {
+			jmp.pb(vector<int>(v.size()-(1<<j)+1));
+			for(int i = 0; i < jmp[j].size(); i++) jmp[j][i] = comb(jmp[j-1][i],
 									jmp[j-1][i+(1<<(j-1))]);
 		}
 	}

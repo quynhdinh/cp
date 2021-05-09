@@ -18,8 +18,8 @@ template<class T, int SZ> struct RangeQuery {
 		fill(l,m,ind-1); fill(m,r,ind-1);
 	}
 	void init() {
-		n = 1; while ((1<<n) < sz(a)) n ++;
-		a.rsz(1<<n); fill(0,(1<<n),n-1);
+		n = 1; while ((1<<n) < a.size()) n ++;
+		a.resize(1<<n); fill(0,(1<<n),n-1);
 	}
 	T query(int l, int r) {
 		if (l == r) return a[l];
