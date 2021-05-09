@@ -3,6 +3,7 @@
  	* strongly connected components in topological order. $a,b$
  	* in same component if both $a\to b$ and $b\to a$ exist.
  	* Uses less memory than Kosaraju b/c doesn't store reverse edges.
+	* Often prefered Faster than Kosaraju because it only run dfs one time?
  * Time: O(N+M)
  * Source: KACTL
  	* https://github.com/kth-competitive-programming/kactl/blob/master/content/graph/SCC.h

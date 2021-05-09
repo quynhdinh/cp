@@ -26,6 +26,7 @@ void dfs(int a, int par){
         dfs(b, a);
     }
 }
+
  
 int get_lca(int a, int b){ //O(log(n))
     if(depth[a] < depth[b]){
@@ -49,7 +50,11 @@ int get_lca(int a, int b){ //O(log(n))
     }
     return up[a][0];
 }
- 
+//get the distance between two nodes
+//TODO: test this function
+int get_dist(int a, int b){ //O(logN)
+	return depth[a] + depth[b] - 2 * depth(get_lca(a, b));
+}
 void test_case(){
     int V; cin>>V;
     for(int i = 0; i < V; i++){

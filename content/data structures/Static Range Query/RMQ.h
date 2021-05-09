@@ -3,7 +3,7 @@
  	* for any associative operation in $O(1)$ with D\&C
  * Source: KACTL
  * Verification:
-	* https://cses.fi/problemset/stats/1647/
+	* https://oj.vnoi.info/problem/nklineup
 	* http://wcipeg.com/problem/ioi1223
 	* https://pastebin.com/ChpniVZL
  * Memory: O(N\log N)
