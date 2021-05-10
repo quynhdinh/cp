@@ -1,4 +1,4 @@
-/**
+/**wq
  * Description: The centroid of a tree of size $N$ is a vertex such that
  	* after removing it, all resulting subtrees have size at most $\frac{N}{2}.$
  	* Supports updates in the form ``add 1 to all verts $v$ such that $dist(x,v)\le y$."
@@ -13,25 +13,25 @@
 template<class T> bool ckmin(T& a, const T& b) {
 	return b < a ? a = b, 1 : 0; } // set a = min(a,b)
 
-void ad(vi& a, int b) { ckmin(b,sz(a)-1); if (b>=0) a[b]++; }
+void ad(vector<int>& a, int b) { ckmin(b,a.size()-1); if (b>=0) a[b]++; }
 
-void prop(vi& a) { for(int i = sz(a) - 2; i >= 0; i--) a[i] += a[i+1]; }
+void prop(vector<int>& a) { for(int i = a.size() - 2; i >= 0; i--) a[i] += a[i+1]; }
 
 template<int SZ> struct Centroid {
-	vi adj[SZ]; void ae(int a,int b){adj[a].pb(b),adj[b].pb(a);}
+	vector<int> adj[SZ]; void ae(int a,int b){adj[a].push_back(b),adj[b].push_back(a);}
 	bool done[SZ]; // processed as centroid yet
 	int N,sub[SZ],cen[SZ],lev[SZ]; // subtree size, centroid anc
 	int dist[32-__builtin_clz(SZ)][SZ]; // dists to all ancs
-	vi stor[SZ], STOR[SZ];
+	vector<int> stor[SZ], STOR[SZ];
 	void dfs(int x, int p) { sub[x] = 1;
-		each(y,adj[x]) if (!done[y] && y != p)
+		for(auto& y: adj[x]) if (!done[y] && y != p)
 			dfs(y,x), sub[x] += sub[y];
 	}
 	int centroid(int x) {
 		dfs(x,-1);
 		for (int sz = sub[x];;) {
 			pair<int, int> mx = {0,0};
-			each(y,adj[x]) if (!done[y] && sub[y] < sub[x])
+			for(auto& y: adj[x]) if (!done[y] && sub[y] < sub[x])
 				ckmax(mx,{sub[y],y});
 			if (mx.first*2 <= sz) return x;
 			x = mx.second;
@@ -39,14 +39,14 @@ template<int SZ> struct Centroid {
 	}
 	void genDist(int x, int p, int lev) {
 		dist[lev][x] = dist[lev][p]+1;
-		each(y,adj[x]) if (!done[y] && y != p) genDist(y,x,lev); }
+		for(auto& y: adj[x]) if (!done[y] && y != p) genDist(y,x,lev); }
 	void gen(int CEN, int _x) { // CEN = centroid above x
 		int x = centroid(_x); done[x] = 1; cen[x] = CEN;
 		sub[x] = sub[_x]; lev[x] = (CEN == -1 ? 0 : lev[CEN]+1);
 		dist[lev[x]][x] = 0;
-		stor[x].rsz(sub[x]),STOR[x].rsz(sub[x]+1);
-		each(y,adj[x]) if (!done[y]) genDist(y,x,lev[x]);
-		each(y,adj[x]) if (!done[y]) gen(x,y);
+		stor[x].resize(sub[x]),STOR[x].resize(sub[x]+1);
+		for(auto& y: adj[x]) if (!done[y]) genDist(y,x,lev[x]);
+		for(auto& y: adj[x]) if (!done[y]) gen(x,y);
 	}
 	void init(int _N) { N = _N; for(int i = 1; i < N + 1; i++) done[i] = 0;
 		gen(-1,1); } // start at vert 1
