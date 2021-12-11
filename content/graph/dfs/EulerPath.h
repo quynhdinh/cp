@@ -1,5 +1,5 @@
 /**
- * Description: Eulerian path starting at \texttt{src} if it exists, 
+ * Description: Eulerian path starting at src if it exists, 
      * visits all edges exactly once. Works for both directed and 
      * undirected. Returns vector of {vertex,label of edge to vertex}.
      * The second element of the first pair is always $-1$.
@@ -11,24 +11,26 @@
  */
 
 template<bool directed> struct Euler {
-    int N; V<vpi> adj; V<vpi::iterator> its; vb used;
-    void init(int _N) { N = _N; adj.rsz(N); }
+    int N; vector<vector<pair<int,int>>> adj; vector<vector<pair<int,int>>::iterator> its; vector<bool> used;
+    void init(int _N) { N = _N; adj.resize(N); }
     void ae(int a, int b) {
-        int M = sz(used); used.pb(0); 
-        adj[a].eb(b,M); if (!directed) adj[b].eb(a,M); }
-    vpi solve(int src = 0) { 
-        its.rsz(N); F0R(i,N) its[i] = begin(adj[i]);
-        vpi ans, s{{src,-1}}; // {{vert, prev vert}, edge label}
-        int lst = -1; // ans is generated in reverse order
-        while (sz(s)) { 
-            int x = s.bk.f; auto& it = its[x], en = end(adj[x]);
-            while (it != en && used[it->s]) it ++;
+        int M = used.size(); used.push_back(0);
+        adj[a].emplace_back(b,M); if (!directed) adj[b].emplace_back(a,M); }
+    vector<pair<int,int>> solve(int src = 0) {
+        its.resize(N); for(int i = 0; i < N; i++) its[i] = begin(adj[i]);
+        vector<pair<int,int>> ans, s{{src,-1}}; // {{vert,prev vert},edge label}
+        int lst = -1; // ans generated in reverse order
+        while (!s.empty()) {
+            int x = s.back().first; auto& it=its[x], en=end(adj[x]);
+            while (it != en && used[it->second]) ++it;
             if (it == en) { // no more edges out of vertex
-                if (lst != -1 && lst != x) return {}; // not a path, no tour exists
-                ans.pb(s.bk); s.pop_back(); if (sz(s)) lst = s.bk.f;
-            } else s.pb(*it), used[it->s] = 1;
-        }
-        if (sz(ans) != sz(used)+1) return {}; // not all edges used
-        reverse(all(ans)); return ans;
+                if (lst != -1 && lst != x) return {};
+                // not a path, no tour exists
+                ans.push_back(s.back()); s.pop_back(); if (s.size()) lst=s.back().first;
+            } else s.push_back(*it), used[it->second] = 1;
+        } // must use all edges
+        if (ans.size() != used.size() +1) return {};
+        reverse(ans.begin(), ans.end()); return ans;
     }
 };
+// https://leetcode.com/problems/valid-arrangement-of-pairs/
