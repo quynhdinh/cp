@@ -12,9 +12,13 @@ template<class T> struct PrefixSums {
 		for(int i = 0; i < R; i++)  for(int j = 0; j < C; j++)
 			sum[i+1][j+1] = v[i][j]+sum[i+1][j]+sum[i][j+1]-sum[i][j];
 	}
-	T get(int X1, int X2, int Y1, int Y2) {
+	T get(int X1, int Y1, int X2, int Y2) {
 		X2 ++, Y2 ++;
 		return sum[X2][Y2]-sum[X1][Y2]
 			-sum[X2][Y1]+sum[X1][Y1];
 	}
 };
+
+PrefixSums<int> pref;
+pref.init(a);
+pref.get(r1, c1, r2, c2);
