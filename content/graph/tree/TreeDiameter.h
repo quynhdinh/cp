@@ -2,7 +2,8 @@
  * Description: Calculates longest path in tree.
  * Source: Benq
  * Verification:
-   * http://www.spoj.com/problems/PT07Z/ (obvious) 
+   * http://www.spoj.com/problems/PT07Z/ (obvious)
+   * https://leetcode.com/problems/minimum-height-trees
    * https://codeforces.com/contest/1182/problem/D
  */
 /*
