@@ -31,3 +31,5 @@ return max;
 // https://leetcode.com/problems/best-team-with-no-conflicts/
 
 // https://leetcode.com/problems/maximum-height-by-stacking-cuboids/(harder)
+
+// fast : https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/DP/lis.cpp
