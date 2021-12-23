@@ -12,10 +12,10 @@ struct TopoSort {
 	bool sort() {
 		queue<int> todo;
 		for(int i = 0; i < N; i++) if (!in[i]) todo.push(i);
-		while (sz(todo)) {
+		while (!todo.empty()) {
 			int x = todo.front(); todo.pop(); res.push_back(x);
-			each(i,adj[x]) if (!(--in[i])) todo.push(i);
+			for(auto& i: adj[x]) if (!(--in[i])) todo.push(i);
 		}
-		return sz(res) == N;
+		return (int)res.size() == N;
 	}
 };
