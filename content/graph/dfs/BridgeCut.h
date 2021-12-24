@@ -5,6 +5,7 @@
  * tree.ae(u, v);
  * tree.solve();
  * tree.bridges, tree.cuts
+ * Verification: https://leetcode.com/problems/critical-connections-in-a-network/
  */
 struct BridgeCut {
     vector<int> low, num, parent;
