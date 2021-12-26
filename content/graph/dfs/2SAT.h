@@ -3,7 +3,7 @@
  * Time: O(N+M)
  * Usage: TwoSat sat(N); // N is the number of arguments
  * sat.add_cond(x, a_bool, y, b_bool); // x, y must be 0-based, {a, b}_bool is the sign
- * sat.exec() -> insatisfiable or not -> sat.res[0..N - 1]
+ * sat.exec() -> satisfiable or not -> sat.res[0..N - 1]
  * Source & Verification: https://judge.yosupo.jp/problem/two_sat
  */
 struct SCC{
