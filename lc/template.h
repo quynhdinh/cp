@@ -24,14 +24,11 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cout << ", "; _print(v..
 #else
 #define debug(x...)
 #endif
-#define pb push_back
 void db(vector<bool> v) {
   bool first = true;
   string res = "{";
-  for (int i = 0; i < static_cast<int>(v.size()); i++) {
-    if (!first) {
-      res += ", ";
-    }
+  for (int i = 0; i < int(v.size()); i++) {
+    if (!first) res += ", ";
     first = false;
     res += to_string(v[i]);
   }
