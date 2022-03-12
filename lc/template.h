@@ -19,11 +19,7 @@ void __print(const T &x) {int f = 0; cout << '{'; for (auto &i: x) cout << (f++ 
 void _print() {cout << "]\n";}
 template <typename T, typename... V>
 void _print(T t, V... v) {__print(t); if (sizeof...(v)) cout << ", "; _print(v...);}
-#ifndef ONLINE_JUDGE
 #define debug(x...) cout << "[" << #x << "] = ["; _print(x)
-#else
-#define debug(x...)
-#endif
 void db(vector<bool> v) {
   bool first = true;
   string res = "{";

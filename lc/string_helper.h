@@ -1,4 +1,4 @@
-    vector<string> get_strings(string str){
+vector<string> get_strings(string str){
         vector<string> internal;
         stringstream ss(str);
         char delimiter = ' ';

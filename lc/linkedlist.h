@@ -1,4 +1,4 @@
-        vector<int> a;
+vector<int> a;
         ListNode* cur = head;
         while(cur){
             a.push_back(cur->val);
