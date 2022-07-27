@@ -26,7 +26,7 @@ C hungarian(const vector<vector<C>>& a) {
 		const C inf = numeric_limits<C>::max();
 		int w = 0; job[w] = i; // add "dummy" 0, find path to real worker
 		vector<C> dist(M+1,inf); vi pre(M+1,-1); vector<bool> done(M+1);
-		while (job[w]) { // dijkstra
+		while (job[w]) { // 
 			done[w] = 1; int j = job[w], nexW; C delta = inf;
 			// fix dist[j], update dists from j
 			F0R(W,M+1) if (!done[W]) { // try all workers
