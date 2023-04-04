@@ -3,11 +3,12 @@
      * visits all edges exactly once. Works for both directed and 
      * undirected. Returns vector of {vertex,label of edge to vertex}.
      * The second element of the first pair is always $-1$.
+     // The path is the first element of every pair
  * Time: O(N+M)
  * Source: USACO Training, MIT ICPC Notebook
  * Verification:
     * directed -> https://open.kattis.com/problems/eulerianpath
-    * undirected -> USACO Training 3.3, Riding the Fences
+    * undirected -> USACO Training 3.3, Riding the Fences, https://cses.fi/problemset/task/1691
  */
 
 template<bool directed> struct Euler {
