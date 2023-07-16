@@ -32,3 +32,38 @@ template<class T> struct PrefixSums {
 PrefixSums<int> pref;
 pref.init(a);
 pref.get(r1, c1, r2, c2);
+
+// PrefixSumsString table;
+// table.init(s);
+// table.query(0, n - 1, 'a')
+// table.queryByChar(0, (int)s.size() - 1, 'Q');
+
+struct PrefixSumsString {
+	vector<vector<int>> prefix;
+	int getPos(char c){
+		bool isUpperCase = (c == toupper(c));
+		return (c  - (isUpperCase ? 'A' : 'a'));
+	}		
+	void init(const string& s){ // this only works with all-lowercase/all-uppercase characters
+		int n = (int)s.size();
+		prefix.resize(26, vector<int>(n));
+		for(int i = 0; i < 26; i++){
+			for(int j = 0; j < n; j++){
+				int id = getPos(s[j]);
+				prefix[id][j] = 1;
+			}
+		}
+		for(int i = 0; i < 26; i++){
+			for(int j = 1; j < n; j++){
+				prefix[i][j] = prefix[i][j] + prefix[i][j - 1];
+			}
+		}
+	}
+	int query(int l, int r, int pos){
+		return (l == 0 ? prefix[pos][r] : prefix[pos][r] - prefix[pos][l - 1]);
+	}
+	int query(int l, int r, char ch){
+		int pos = getPos(ch);
+		return query(l, r, pos);
+	}
+};
