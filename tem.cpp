@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
 using namespace std;
 
 //debug
@@ -28,9 +29,14 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #else
 #define debug(x...)
 #endif
-
-//end debug template
-
-int32_t main(){
-	freopen("input.txt", "r", stdin);
+#define int long long
+void test_case(){
 }
+int32_t main() {
+	int T; cin>>T;
+	while(T--){
+		test_case();
+	}
+    return 0;
+}
+
