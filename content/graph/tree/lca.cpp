@@ -7,7 +7,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define debug(a) cerr << #a << ": " << a << endl
 const int MAX_N = 1000;
 const int LOG = 10;
 vector<int> edges[MAX_N];
@@ -27,7 +26,6 @@ void dfs(int a, int par){
     }
 }
 
- 
 int get_lca(int a, int b){ //O(log(n))
     if(depth[a] < depth[b]){
         swap(a, b);
@@ -50,11 +48,12 @@ int get_lca(int a, int b){ //O(log(n))
     }
     return up[a][0];
 }
+
 //get the distance between two nodes
-//TODO: test this function
 int get_dist(int a, int b){ //O(logN)
-	return depth[a] + depth[b] - 2 * depth(get_lca(a, b));
+	return depth[a] + depth[b] - 2 * depth[get_lca(a, b)];
 }
+
 void test_case(){
     int V; cin>>V;
     for(int i = 0; i < V; i++){

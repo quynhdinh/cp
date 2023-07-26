@@ -5,7 +5,7 @@
  * Memory: O(N\log N)
  * Source: USACO Camp, KACTL
  * Verification: https://www.spoj.com/problems/LCA/
- * Usage: LCA tree; tree.init(N); tree.lca(a, b);
+ * Usage: LCA tree; tree.init(N); tree.lca(a, b); tree.gen();
  */
 
 struct LCA {
