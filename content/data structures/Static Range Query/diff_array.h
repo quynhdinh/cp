@@ -1,3 +1,5 @@
+// Implementation: me
+// Verification: Array manipulation: https://www.hackerrank.com/challenges/crush/problem
 vector<int> diff_array(const vector<int>& a, const vector<tuple<int, int, int>>& ops){
 	const int n = a.size();
 	vector<int> pref(n);
