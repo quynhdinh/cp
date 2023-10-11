@@ -20,3 +20,24 @@ vector<int> diff_array(const vector<int>& a, const vector<tuple<int, int, int>>&
 	}
 	return result;
 }
+
+
+// now you want to increase from `left` to `right` a value c(`left` and `right` are big (~1e9));
+
+map<int, int> diff;
+diff[0] = 0;
+for(const auto& tuple: ops){
+    int l = tuple[0];
+    int r = tuple[1];
+    int c = tuple[2];
+    diff[l]++;
+    diff[r + 1]--;
+}
+vector<int> positions, prefix;
+int cur = 0;
+for(auto& [pos, c]: diff){
+    positions.push_back(pos);
+    cur += c;
+    prefix.push_back(cur);
+}
+// now for each postions[i] will be c, you might want to do some binary search on this
