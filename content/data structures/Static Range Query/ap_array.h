@@ -1,3 +1,4 @@
+// given an array in each operation, add a arithmetic progression from left to right
 vector<int> ap_update(const vector<int> &a, const vector<pair<int, int>> &ops) {
     int n = a.size();
     vector<int> pref(n);
