@@ -11,7 +11,13 @@ const vector< pair<int,int> > dirs = {
     {1, 0},   // up
     {0, 1},   // right
 };
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, 1, 0, -1};
 int R = grid.size(), C = grid[0].size(); // check height if needed
+auto inside = [&](int r, int c){
+    return r >= 0 && r < R && c >= 0 && c < C;
+};
+
 vector<vector<bool>> vis(R, vector<bool>(C, false));
 queue<pair<int, int>> q; // might enqueue some cells first
 // queue<pair<int, int>> q({{r, c}});
