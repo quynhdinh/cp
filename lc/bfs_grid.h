@@ -14,8 +14,14 @@ const vector< pair<int,int> > dirs = {
 const int dx[4] = {1, 0, -1, 0};
 const int dy[4] = {0, 1, 0, -1};
 int R = grid.size(), C = grid[0].size(); // check height if needed
-auto inside = [&](int r, int c){
+auto inside = [&](int r, int c) -> bool{
     return r >= 0 && r < R && c >= 0 && c < C;
+};
+auto flatten = [&](int r, int c) -> int{
+    return r * C + c;
+};
+auto unflatten = [&](int value) -> pair<int, int> {
+    return make_pair(value / C, value % C);
 };
 
 vector<vector<bool>> vis(R, vector<bool>(C, false));
@@ -28,7 +34,7 @@ while(!q.empty()){
     for(auto [dx, dy]: dirs){
         int r2 = r + dx;
         int c2 = c + dy;
-        if(r2 >= 0 && r2 < R && c2 >= 0 && c2 < C && !vis[r2][c2] && (true)){ // might add some condition
+        if(inside(r2, c2) && !vis[r2][c2] && (true)){ // might add some condition
             vis[r2][c2] = true;
             q.push({r2, c2});
         }
