@@ -31,9 +31,9 @@ queue<pair<int, int>> q; // might enqueue some cells first
 while(!q.empty()){
     auto [r, c] = q.front(); q.pop();
     // do something here if want
-    for(auto [dx, dy]: dirs){
-        int r2 = r + dx;
-        int c2 = c + dy;
+    for(int dir = 0; dir < 4; dir++){
+        int r2 = r + dx[dir];
+        int c2 = c + dy[dir];
         if(inside(r2, c2) && !vis[r2][c2] && (true)){ // might add some condition
             vis[r2][c2] = true;
             q.push({r2, c2});

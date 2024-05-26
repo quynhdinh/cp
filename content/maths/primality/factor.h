@@ -22,10 +22,10 @@ inline namespace factorBasic {
         return x;
     }
     template<class T> void tour(vector<pair<T,int>>& v, vector<T>& V, int ind, T cur) {
-        if (ind == sz(v)) V.push_back(cur);
+        if (ind == v.size()) V.push_back(cur);
         else {
             T mul = 1;
-            for(int i = 0; i < (int)v[ind].size() + 1; i++){
+            for(int i = 0; i < v[ind].second + 1; i++){
                 tour(v,V,ind+1,cur*mul);
                 mul *= v[ind].first;
             }
