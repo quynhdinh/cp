@@ -11,21 +11,24 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-#define int long long
+uint64_t random_address() { char *p = new char; delete p; return uint64_t(p); }
+
+const uint64_t SEED = chrono::steady_clock::now().time_since_epoch().count() * (random_address() | 1);
+mt19937_64 rng(SEED);
 
 int32_t main(){
-    int n; cin>>n;
-    vector<int> a(n);
-    for(int& x: a){
-        cin>>x;
+    int N = 100;
+    int A_MAX = 10000;
+    vector<int> a(N);
+    for(int i = 0; i < N; i++){
+        a[i] = rng() % A_MAX;
+        cout<<a[i]<<(i < N - 1 ? ' ' : '\n');
     }
-    vector<int> pref(n), prefA(n);
-    pref[0] = a[0];
-    for(int i = 1; i < n; i++){
-        pref[i] = pref[i - 1] + a[i];
-    }
+    vector<int> pref(N), prefA(N);
     prefA[0] = 1 * a[0];
-    for(int i = 1; i < n; i++){
+    pref[0] = a[0];
+    for(int i = 1; i < N; i++){
+        pref[i] = pref[i - 1] + a[i];
         prefA[i] = prefA[i - 1] + (i + 1) * a[i];
     }
     auto getSum = [&](int l, int r){
@@ -35,21 +38,29 @@ int32_t main(){
         return (prefA[r] - (l == 0 ? 0 : prefA[l - 1]));
     };
     auto get = [&](int l, int r){
+        if(l == 0){
+            return prefA[r];
+        }
         int right = getSumA(0, r);
         int left = getSumA(0, l - 1);
         int sum = getSum(l, r);
         return right - left - l * sum;
     };
-    int Q; cin>>Q;
+    int Q = 100000;
     while(Q--){
-        int l, r; cin>>l>>r;
-        int mul = 1, res = 0;
+        int l = rng() % N;
+        int r = rng() % N;
+        if(l > r){
+            swap(l, r);
+        }
+        assert(l >= 0 && l < N);
+        assert(r >= 0 && r < N);
+        int mul = 1, brute = 0;
         for(int i = l; i <= r; i++){
-            res += mul * a[i];
+            brute += mul * a[i];
             mul++;
         }
-        cout<<get(l, r)<<' '<<res<<'\n';
+        assert(get(l, r) == brute);
     }
     return 0;
 }
-
