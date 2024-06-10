@@ -22,7 +22,7 @@ inline namespace factorBasic {
         return x;
     }
     template<class T> void tour(vector<pair<T,int>>& v, vector<T>& V, int ind, T cur) {
-        if (ind == v.size()) V.push_back(cur);
+        if (ind == (int)v.size()) V.push_back(cur);
         else {
             T mul = 1;
             for(int i = 0; i < v[ind].second + 1; i++){
