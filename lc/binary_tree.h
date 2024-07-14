@@ -16,17 +16,17 @@ void dfs(TreeNode* root){
 unordered_map<int, vector<int>> g;
 stack<TreeNode*> st({root});
 while(!st.empty()){
-    TreeNode* root = st.top();
+    TreeNode* tp = st.top();
     st.pop();
-    if(root->left){
-        g[root->left->val].push_back(root->val);
-        g[root->val].push_back(root->left->val);
-        st.push(root->left);
+    if(tp->left){
+        g[tp->left->val].push_back(tp->val);
+        g[tp->val].push_back(tp->left->val);
+        st.push(tp->left);
     }
-    if(root->right){
-        g[root->right->val].push_back(root->val);
-        g[root->val].push_back(root->right->val);
-        st.push(root->right);
+    if(tp->right){
+        g[tp->right->val].push_back(tp->val);
+        g[tp->val].push_back(tp->right->val);
+        st.push(tp->right);
     }
 }
 queue<int> q({start});
