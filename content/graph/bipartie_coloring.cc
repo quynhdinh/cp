@@ -5,7 +5,7 @@
    * https://cses.fi/problemset/task/1668/
  */
 /*
- * Usage: auto [isBipartie, coloring] = get_diameter(g);
+ * Usage: auto [isBipartie, coloring] = bipartite_coloring(g);
  * */
 pair<bool, vector<int>> bipartite_coloring(const vector<vector<int>>& g) {
     int n = g.size();
