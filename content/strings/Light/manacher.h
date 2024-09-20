@@ -19,4 +19,14 @@ vector<int> manacher(string s) {
 	for(int i = 0; i < (int)ans.size(); i++) if ((i&1) == (ans[i]&1)) ans[i] ++;
 	return ans;
 }
-/// Usage: ps(manacher("abacaba"))
+// Usage: vector<int> temp = manacher("abacaba");
+// for(int i = 0; i < size(s); i++){
+//     assert(temp[i * 2] % 2 == 1);
+//     int left = i - temp[i * 2] / 2;
+//     int right = i + temp[i * 2] / 2;
+//     if(i + 1 < size(s)){
+//         assert(temp[2 * i + 1] % 2 == 0);
+//         left = i + 1 - temp[2 * i + 1] / 2;
+//         right = i + temp[2 * i + 1] / 2;
+//     }
+// }
