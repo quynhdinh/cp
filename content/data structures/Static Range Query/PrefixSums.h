@@ -6,9 +6,8 @@
 template<class T> struct Prefix1D {
 	vector<T> pref;
 	void init(const vector<T>& v){
-		int N = v.size(); pref.resize(N);
-		pref[0] = v[0];
-		for(int i = 1; i < N; i++) pref[i] = pref[i - 1] + v[i];
+		pref = v;
+		partial_sum(begin(pref), end(pref), begin(pref));
 	}
 	T get(int left, int right) {
 		return (pref[right] - (left == 0 ? 0 : pref[left - 1]));
