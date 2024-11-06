@@ -28,6 +28,25 @@ template<class T> struct PrefixSums {
 	}
 };
 
+template<class T> struct PrefixSums {
+	vector<vector<T>> sum;
+	void init(const vector<vector<T>>& v) {
+		int R = v.size(), C = v[0].size();
+		sum.assign(R, vector<T>(C));
+		for(int r = 0; r < R; r++)
+			for(int c = 0; c < C; c++)
+				sum[r][c] = v[r][c] + (r - 1 >= 0 ? sum[r - 1][c] : 0)
+				- (r - 1 >= 0 && c - 1 >= 0 ? sum[r - 1][c - 1] : 0)
+				+ (c >= 1 ? sum[r][c - 1] : 0);
+	}
+	T get(int r1, int c1, int r2, int c2){
+		return sum[r2][c2] 
+			+ (r1 - 1 >= 0 && c1 - 1 >= 0 ? sum[r1 - 1][c1 - 1] : 0) 
+			- (c1 - 1 >= 0 ? sum[r2][c1 - 1] : 0) 
+			- (r1 - 1 >= 0 ? sum[r1 - 1][c2] : 0);
+	}
+};
+
 PrefixSums<int> pref;
 pref.init(a);
 pref.get(r1, c1, r2, c2);
