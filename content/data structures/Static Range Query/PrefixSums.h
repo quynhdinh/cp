@@ -71,11 +71,8 @@ struct PrefixSumsString {
 				prefix[id][j] = 1;
 			}
 		}
-		for(int i = 0; i < 26; i++){
-			for(int j = 1; j < n; j++){
-				prefix[i][j] = prefix[i][j] + prefix[i][j - 1];
-			}
-		}
+		for(int i = 0; i < 26; i++)
+			partial_sum(begin(prefix[i]), end(prefix[i]), begin(prefix[i]));
 	}
 	int query(int l, int r, int pos){
 		return (l == 0 ? prefix[pos][r] : prefix[pos][r] - prefix[pos][l - 1]);
@@ -83,5 +80,47 @@ struct PrefixSumsString {
 	int query(int l, int r, char ch){
 		int pos = getPos(ch);
 		return query(l, r, pos);
+	}
+};
+
+template<class T> struct PrefixBit {
+	vector<vector<T>> pref;
+	const int BASE = 30; // 1e9
+	void init(const vector<T>& v){
+		const int n = size(v);
+		pref.assign(BASE, vector<int>(n));
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < BASE; j++)
+				if((1 << j) & v[i])
+					pref[j][i] = 1;
+		for(int i = 0; i < BASE; i++)
+			partial_sum(begin(pref[i]), end(pref[i]), begin(pref[i]));
+	}
+	T get_or(int l, int r){
+		T or_value = 0;
+		for(int bit = 0; bit < BASE; bit++){
+			int cnt = pref[bit][r] - (l == 0 ? 0 : pref[bit][l - 1]);
+			if(cnt > 0)
+				or_value += (1 << bit);
+		}
+		return or_value;
+	}
+	T get_and(int l, int r){
+		T and_value = 0;
+		for(int bit = 0; bit < BASE; bit++){
+			int cnt = pref[bit][r] - (l == 0 ? 0 : pref[bit][l - 1]);
+			if(cnt == r - l + 1)
+				and_value += (1 << bit);
+		}
+		return and_value;
+	}
+	T get_xor(int l, int r){
+		T xor_value = 0;
+		for(int bit = 0; bit < BASE; bit++){
+			T cntOne = pref[bit][r] - (l == 0 ? 0 : pref[bit][l - 1]);
+			if(cntOne & 1)
+				xor_value += (1 << bit);
+		}
+		return xor_value;
 	}
 };
