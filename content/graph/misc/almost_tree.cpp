@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// program to print the cycle of a no multi edge graph having n vertices n edges
+// program to print the cycle of a NO MULTIPLE EDGE graph having n vertices n edges
 int32_t main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
