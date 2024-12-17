@@ -3,7 +3,7 @@
 // dfs(root);
 int n;
 map<TreeNode*, int> nodeToLabel;
-map<int, TreeNode*, int> labelToNode;
+map<int, TreeNode*> labelToNode;
 void dfs(TreeNode* root){
     if(root){
         nodeToLabel[root] = n;
