@@ -17,11 +17,26 @@ int R = grid.size(), C = grid[0].size(); // check height if needed
 auto inside = [&](int r, int c) -> bool{
     return r >= 0 && r < R && c >= 0 && c < C;
 };
-auto flatten = [&](int r, int c) -> int{
+auto encode = [&](int r, int c) -> int{
     return r * C + c;
 };
-auto unflatten = [&](int value) -> pair<int, int> {
+auto decode = [&](int value) -> pair<int, int> {
     return make_pair(value / C, value % C);
+};
+auto get_move = [&](int from, int to) -> char {
+    auto f = decode(from);
+    auto t = decode(to);
+    if(f.first + 1 == t.first){
+        return 'D';
+    } else if(f.first - 1 == t.first){
+        return 'U';
+    } else if(f.second + 1 == t.second){
+        return 'R';
+    } else {
+        assert(f.second - 1 == t.second);
+        return 'L';
+    }
+    assert(false);
 };
 
 vector<vector<bool>> vis(R, vector<bool>(C, false));
