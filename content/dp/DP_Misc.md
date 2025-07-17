@@ -32,9 +32,6 @@ int main() {
 
 10912 - Simple Minded Hashing
 ```cpp
-/**
- *    created: 16.07.2025_23:08:37
-**/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -56,6 +53,35 @@ int32_t main(){
         if(l > 26 || s > 351)
             puts("0");
         else printf("%d\n", dp[26][l][s]);
+    }
+    return 0;
+}
+```
+
+11420 - Chest of Drawers
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define lock 0
+#define unlock 1
+int32_t main(){
+    int n , s;
+    vector dp(70, vector<vector<ll>>(70, vector<ll>(2, -1)));
+    function<ll(int, int, int)> solve = [&](int pos, int cntSecure, int prev) -> ll{
+        if (pos < 0 || cntSecure < 0 || prev < 0 )return 0;
+        else if(pos == 0 && cntSecure == 0) return 1;
+        ll &ret = dp[pos][cntSecure][prev];
+        if (ret != -1) return ret;
+        if (prev == lock) ret = solve(pos - 1, cntSecure - 1, lock) + solve(pos - 1, cntSecure,unlock);
+        else ret = solve(pos - 1, cntSecure, lock) + solve(pos - 1, cntSecure, unlock);
+        return ret;
+    };
+    while(scanf("%d %d",&n,&s)){
+        if(n < 0) break;
+        ll ret = solve(n,s,lock);
+        printf("%lld\n",ret);
     }
     return 0;
 }
