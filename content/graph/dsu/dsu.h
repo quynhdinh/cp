@@ -8,15 +8,45 @@
  */
 
 struct DSU {
-	vector<int> e; void init(int N) { e = vector<int>(N,-1); }
-	int get(int x) { return e[x] < 0 ? x : e[x] = get(e[x]); }
-	bool sameSet(int a, int b) { return get(a) == get(b); }
-	int size(int x) { return -e[get(x)]; }
-	bool unite(int x, int y) { // union by size
-		x = get(x), y = get(y); if (x == y) return 0;
-		if (e[x] > e[y]) swap(x,y);
-		e[x] += e[y]; e[y] = x; return 1;
-	}
+  vector<int> e; void init(int N) { e = vector<int>(N,-1); }
+  int get(int x) { return e[x] < 0 ? x : e[x] = get(e[x]); }
+  bool sameSet(int a, int b) { return get(a) == get(b); }
+  int size(int x) { return -e[get(x)]; }
+  bool unite(int x, int y) { // union by size
+    x = get(x), y = get(y); if (x == y) return 0;
+    if (e[x] > e[y]) swap(x,y);
+    e[x] += e[y]; e[y] = x; return 1;
+  }
+};
+struct DSU {
+  int numSets;
+  vector<int> p, rank, setSize;
+  DSU(int n){
+    p.assign(n, 0);
+    iota(begin(p), end(p), 0);
+    rank.assign(n, 0);
+    setSize.assign(n, 1);
+    numSets = n;
+  }
+  int get(int i){
+    return p[i] == i ? i : (p[i] = get(p[i]));
+  }
+  bool sameSet(int u, int v){
+    return get(u) == get(v);
+  }
+  int size(int i){
+    return setSize[get(i)];
+  }
+  bool unite(int i, int j){
+    if(sameSet(i, j)) return false;
+    int x = get(i), y = get(j);
+    if(rank[x] > rank[y]) swap(x, y);
+    p[x] = y;
+    if(rank[x] == rank[y]) ++rank[y];
+    setSize[y] += setSize[x];
+    numSets--;
+    return true;
+  }
 };
 /**
 template<class T> T kruskal(int N, vector<pair<T,pair<int, int>>> ed) {
